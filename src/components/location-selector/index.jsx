@@ -1,10 +1,14 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
-import { useEffect, useState } from "react";
+/* eslint-disable import/order */
 import { Alert, Button, Text, View } from "react-native";
+import {
+  getCurrentPositionAsync,
+  requestForegroundPermissionsAsync,
+} from "expo-location";
+import { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-import colors from "../../utils/colors";
 import MapPreview from "../map-preview";
+import colors from "../../utils/colors";
 import { styles } from "./styles";
 
 const LocationSelector = ({ onLocation }) => {
@@ -18,9 +22,11 @@ const LocationSelector = ({ onLocation }) => {
     const { status } = await requestForegroundPermissionsAsync();
 
     if (status !== "granted") {
-      Alert.alert("Permisos insuficientes", "Necesitamos permisos para obtener la ubicacion", [
-        { text: "Ok" },
-      ]);
+      Alert.alert(
+        "Permisos insuficientes",
+        "Necesitamos permisos para obtener la ubicacion",
+        [{ text: "Ok" }]
+      );
       return false;
     }
 
@@ -39,7 +45,9 @@ const LocationSelector = ({ onLocation }) => {
     setPickedLocation({ lat: latitude, lng: longitude });
     onLocation({ lat: latitude, lng: longitude });
     if (isMaps) {
-      navigation.navigate("Maps", { coords: { lat: latitude, lng: longitude } });
+      navigation.navigate("Maps", {
+        coords: { lat: latitude, lng: longitude },
+      });
     }
   };
 

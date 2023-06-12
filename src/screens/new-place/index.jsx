@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { Button, ScrollView, Text, TextInput, View } from "react-native";
-import { useDispatch } from "react-redux";
-
 import { ImageSelector, LocationSelector } from "../../components";
-import { savePlace } from "../../store/place.slice";
+
 import colors from "../../utils/colors";
+import { savePlace } from "../../store/place.slice";
 import { styles } from "./styles";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const NewPlace = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -33,10 +33,10 @@ const NewPlace = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Nombre nueva ubicacion</Text>
+        <Text style={styles.title}>Descripción nuevo inmueble</Text>
         <TextInput
           style={styles.input}
-          placeholder="Nuevo Mexico, CDMX 12345"
+          placeholder="Casa 2 dormitorios 90 m2, Esquel"
           onChangeText={onHandlerChangeText}
           value={text}
         />
@@ -44,7 +44,7 @@ const NewPlace = ({ navigation }) => {
         <LocationSelector onLocation={onLocation} />
         <Button
           disabled={!enableButton}
-          title="Grabar direccion"
+          title="Grabar ubicación"
           color={colors.primary}
           onPress={onHandlerSubmit}
         />

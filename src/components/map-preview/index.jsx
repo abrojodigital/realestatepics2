@@ -10,7 +10,11 @@ const MapPreview = ({ children, location, style }) => {
 
   return (
     <View style={{ ...styles.container, ...style }}>
-      {location ? <Image style={styles.mapImage} source={{ uri: mapPreviewUrl }} /> : children}
+      {location ? (
+        <Image style={styles.mapImage} source={{ uri: mapPreviewUrl }} />
+      ) : (
+        children
+      )}
     </View>
   );
 };

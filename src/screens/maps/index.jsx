@@ -1,8 +1,8 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useLayoutEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import { useLayoutEffect, useState } from "react";
 
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { TouchableOpacity } from "react-native";
 import colors from "../../utils/colors";
 import { styles } from "./styles";
 
@@ -25,13 +25,17 @@ const Maps = ({ navigation, route }) => {
   };
 
   const onHandlerSaveLocation = () => {
-    if (selectedLocation) navigation.navigate("NewPlace", { mapLocation: selectedLocation });
+    if (selectedLocation)
+      navigation.navigate("NewPlace", { mapLocation: selectedLocation });
   };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity disabled={!selectedLocation} onPress={onHandlerSaveLocation}>
+        <TouchableOpacity
+          disabled={!selectedLocation}
+          onPress={onHandlerSaveLocation}
+        >
           <Ionicons
             name="md-save-sharp"
             size={21}
@@ -47,7 +51,8 @@ const Maps = ({ navigation, route }) => {
       initialRegion={initialRegion}
       style={styles.container}
       onPress={onHandlerPickLocation}
-      minZoomLevel={14}>
+      minZoomLevel={14}
+    >
       {selectedLocation ? (
         <Marker
           title="Ubicacion Seleccionada"

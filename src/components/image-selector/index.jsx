@@ -1,9 +1,12 @@
-import { requestCameraPermissionsAsync, launchCameraAsync } from "expo-image-picker";
-import { useState } from "react";
-import { View, Button, Text, Image, Alert } from "react-native";
+import { Alert, Button, Image, Text, View } from "react-native";
+import {
+  launchCameraAsync,
+  requestCameraPermissionsAsync,
+} from "expo-image-picker";
 
 import colors from "../../utils/colors";
 import { styles } from "./styles";
+import { useState } from "react";
 
 export const ImageSelector = ({ onImage }) => {
   const [pickedUrl, setPickedUrl] = useState(null);
@@ -12,7 +15,11 @@ export const ImageSelector = ({ onImage }) => {
     const { status } = await requestCameraPermissionsAsync();
 
     if (status !== "granted") {
-      Alert.alert("Permiso denegado", "Necesitamos permisos para usar la camara", [{ text: "Ok" }]);
+      Alert.alert(
+        "Permiso denegado",
+        "Necesitamos permisos para usar la camara",
+        [{ text: "Ok" }]
+      );
       return false;
     }
 
@@ -25,7 +32,7 @@ export const ImageSelector = ({ onImage }) => {
 
     const image = await launchCameraAsync({
       allowsEditing: true,
-      aspect: [16, 9],
+      aspect: [4, 3],
       quality: 0.7,
     });
 
@@ -42,7 +49,11 @@ export const ImageSelector = ({ onImage }) => {
           <Image style={styles.image} source={{ uri: pickedUrl }} />
         )}
       </View>
-      <Button title="Tomar Foto" color={colors.primary} onPress={onHandleTakeImage} />
+      <Button
+        title="Tomar Foto"
+        color={colors.primary}
+        onPress={onHandleTakeImage}
+      />
     </View>
   );
 };
