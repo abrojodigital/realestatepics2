@@ -1,28 +1,46 @@
 import { StyleSheet } from "react-native";
 
+import colors from "../../utils/colors";
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 5,
   },
   image: {
-    width: 200,
-    height: 200,
-    marginBottom: 10,
+    height: "40%",
+    minHeight: 220,
+    width: "100%",
+  },
+  location: {
+    marginTop: 20,
+    marginHorizontal: 10,
+    width: "95%",
+    backgroundColor: colors.white,
+    shadowColor: colors.black,
+    shadowOpacity: 0.26,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
+    elevation: 5,
+    borderRadius: 10,
+  },
+  addressContainer: {
+    padding: 20,
   },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 5,
+    color: colors.black,
+    fontSize: 18,
+    textAlign: "center",
   },
   address: {
-    fontSize: 16,
-    color: "#888",
+    color: colors.primary,
+    textAlign: "center",
   },
-  errorText: {
-    fontSize: 18,
-    color: "red",
+  map: {
+    height: 220,
+  },
+  mapText: {
+    fontSize: 16,
+    fontStyle: "italic",
+    color: "gray",
   },
 });

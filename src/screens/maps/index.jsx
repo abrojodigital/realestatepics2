@@ -1,10 +1,10 @@
-import MapView, { Marker } from "react-native-maps";
-import { useLayoutEffect, useState } from "react";
-
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useLayoutEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
-import colors from "../../utils/colors";
+import MapView, { Marker } from "react-native-maps";
+
 import { styles } from "./styles";
+import colors from "../../utils/colors";
 
 const Maps = ({ navigation, route }) => {
   const { coords } = route.params;

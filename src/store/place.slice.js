@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { insertPlace, selectPlaces } from "../db";
 import Place from "../model/place";
-import { URL_GEOCODING } from "../utils/maps";
 import { extractErrorMessage } from "../utils";
+import { URL_GEOCODING } from "../utils/maps";
 
 const initialState = {
   places: [],
@@ -18,24 +19,44 @@ export const savePlace = createAsyncThunk(
       );
 
       if (!response.ok) {
-        throw new Error("Algo ha salido mal!");
+        return thunkAPI.rejectWithValue("Algo malió sal!");
       }
 
       const data = await response.json();
       if (!data.results) {
-        throw new Error("No se ha podido encontrar la dirección del lugar");
+        return thunkAPI.rejectWithValue(
+          "No se ha podido encontrar la dirección del lugar"
+        );
       }
 
       const address = data.results[0].formatted_address;
+      const result = await insertPlace(
+        place.title,
+        place.image,
+        address,
+        place.coords
+      );
 
       const newPlace = new Place(
-        Date.now(),
+        result.insertId,
         place.title,
         place.image,
         address,
         place.coords
       );
       return newPlace;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
+
+export const getPlaces = createAsyncThunk(
+  "place/getPlaces",
+  async (_, thunkAPI) => {
+    try {
+      const result = await selectPlaces();
+      return result?.rows?._array || [];
     } catch (error) {
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
     }
@@ -56,6 +77,16 @@ const placeSlice = createSlice({
         state.places.push(action.payload);
       })
       .addCase(savePlace.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getPlaces.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPlaces.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.places = action.payload;
+      })
+      .addCase(getPlaces.rejected, (state) => {
         state.isLoading = false;
       });
   },

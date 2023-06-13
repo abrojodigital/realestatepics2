@@ -1,11 +1,11 @@
-import { Button, ScrollView, Text, TextInput, View } from "react-native";
-import { ImageSelector, LocationSelector } from "../../components";
-
-import colors from "../../utils/colors";
-import { savePlace } from "../../store/place.slice";
-import { styles } from "./styles";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { Button, ScrollView, Text, TextInput, View } from "react-native";
+import { useDispatch } from "react-redux";
+
+import { styles } from "./styles";
+import { ImageSelector, LocationSelector } from "../../components";
+import { savePlace } from "../../store/place.slice";
+import colors from "../../utils/colors";
 
 const NewPlace = ({ navigation }) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { Image, View } from "react-native";
 
-import { URL_MAPS } from "../../utils/maps";
 import { styles } from "./styles";
+import { URL_MAPS } from "../../utils/maps";
 
 const MapPreview = ({ children, location, style }) => {
   const { lat, lng } = location || {};
