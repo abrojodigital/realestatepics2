@@ -22,9 +22,14 @@ const PlaceDetail = ({ navigation, route }) => {
         <View style={styles.addressContainer}>
           <Text style={styles.address}>{place.address}</Text>
         </View>
+        <Text style={styles.price}>Precio: ${place.price}</Text>
+        <Text style={styles.area}>Área: {place.area} m²</Text>
+        {/* <Text style={styles.bedrooms}>Dormitorios: {place.bedrooms}</Text>
+        <Text style={styles.bathrooms}>Baños: {place.bathrooms}</Text> */}
+        <Text style={styles.description}>{place.description}</Text>
         <MapPreview
           style={styles.map}
-          location={{ lat: parseCoords.lat, lng: parseCoords.lng }}
+          location={{ lat: parseCoords.latitude, lng: parseCoords.longitude }}
         >
           <Text style={styles.mapText}>Ubicación no disponible</Text>
         </MapPreview>

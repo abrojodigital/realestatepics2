@@ -34,7 +34,12 @@ export const savePlace = createAsyncThunk(
         place.title,
         place.image,
         address,
-        place.coords
+        place.coords,
+        place.price,
+        place.area
+        // place.bedrooms,
+        // place.bathrooms,
+        // place.description
       );
 
       const newPlace = new Place(
@@ -42,7 +47,12 @@ export const savePlace = createAsyncThunk(
         place.title,
         place.image,
         address,
-        place.coords
+        place.coords,
+        place.price,
+        place.area
+        // place.bedrooms,
+        // place.bathrooms,
+        // place.description
       );
       return newPlace;
     } catch (error) {

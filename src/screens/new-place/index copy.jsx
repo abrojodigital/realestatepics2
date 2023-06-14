@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, ScrollView, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -9,35 +9,29 @@ import colors from "../../utils/colors";
 
 const NewPlace = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    text: "",
-    image: "",
-    coords: null,
-    price: "",
-    area: "",
-  });
+  const [text, setText] = useState("");
+  const [image, setImage] = useState("");
+  const [coords, setCoords] = useState(null);
+  const [price, setPrice] = useState("");
+  const [area, setArea] = useState("");
 
-  const { text, image, coords, price, area } = formData;
+  const enableButton = text && image && coords;
 
-  const onHandlerChangeText = (value, field) => {
-    setFormData((prevFormData) => ({ ...prevFormData, [field]: value }));
+  const onHandlerChangeText = (text) => {
+    setText(text);
   };
 
   const onHandlerSubmit = () => {
-    dispatch(savePlace(formData)).unwrap();
+    dispatch(savePlace({ title: text, image, coords, price, area })).unwrap();
     navigation.navigate("Places");
   };
 
   const onImage = (imageUri) => {
-    setFormData((prevFormData) => ({ ...prevFormData, image: imageUri }));
+    setImage(imageUri);
   };
-
   const onLocation = (location) => {
-    setFormData((prevFormData) => ({ ...prevFormData, coords: location }));
+    setCoords(location);
   };
-
-  const enableButton = text && image && coords;
-
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -45,21 +39,21 @@ const NewPlace = ({ navigation }) => {
         <TextInput
           style={styles.input}
           placeholder="Casa 2 dormitorios 90 m2, Esquel"
-          onChangeText={(value) => onHandlerChangeText(value, "text")}
+          onChangeText={onHandlerChangeText}
           value={text}
         />
         <TextInput
           style={styles.input}
           placeholder="Precio"
           keyboardType="numeric"
-          onChangeText={(value) => onHandlerChangeText(value, "price")}
+          onChangeText={(price) => setPrice(price)}
           value={price}
         />
         <TextInput
           style={styles.input}
           placeholder="Área en metros cuadrados"
           keyboardType="numeric"
-          onChangeText={(value) => onHandlerChangeText(value, "area")}
+          onChangeText={(area) => setArea(area)}
           value={area}
         />
         <ImageSelector onImage={onImage} />
