@@ -13,11 +13,12 @@ const NewPlace = ({ navigation }) => {
     text: "",
     image: "",
     coords: null,
+    status: "",
     price: "",
     area: "",
   });
 
-  const { text, image, coords, price, area } = formData;
+  const { text, image, coords, status, price, area } = formData;
 
   const onHandlerChangeText = (value, field) => {
     setFormData((prevFormData) => ({ ...prevFormData, [field]: value }));
@@ -47,6 +48,12 @@ const NewPlace = ({ navigation }) => {
           placeholder="Casa 2 dormitorios 90 m2, Esquel"
           onChangeText={(value) => onHandlerChangeText(value, "text")}
           value={text}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="En Alquiler / En Venta"
+          onChangeText={(value) => onHandlerChangeText(value, "status")}
+          value={status}
         />
         <TextInput
           style={styles.input}

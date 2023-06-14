@@ -18,15 +18,11 @@ const PlaceDetail = ({ navigation, route }) => {
       <View style={styles.location}>
         <View style={styles.addressContainer}>
           <Text style={styles.title}>{place.title}</Text>
-        </View>
-        <View style={styles.addressContainer}>
           <Text style={styles.address}>{place.address}</Text>
+          <Text style={styles.title}>{place.status}</Text>
+          <Text style={styles.price}>Precio: ${place.price}</Text>
+          <Text style={styles.area}>Área: {place.area} m²</Text>
         </View>
-        <Text style={styles.price}>Precio: ${place.price}</Text>
-        <Text style={styles.area}>Área: {place.area} m²</Text>
-        {/* <Text style={styles.bedrooms}>Dormitorios: {place.bedrooms}</Text>
-        <Text style={styles.bathrooms}>Baños: {place.bathrooms}</Text> */}
-        <Text style={styles.description}>{place.description}</Text>
         <MapPreview
           style={styles.map}
           location={{ lat: parseCoords.latitude, lng: parseCoords.longitude }}

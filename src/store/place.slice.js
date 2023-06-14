@@ -35,6 +35,7 @@ export const savePlace = createAsyncThunk(
         place.image,
         address,
         place.coords,
+        place.status,
         place.price,
         place.area
         // place.bedrooms,
@@ -48,6 +49,7 @@ export const savePlace = createAsyncThunk(
         place.image,
         address,
         place.coords,
+        place.status,
         place.price,
         place.area
         // place.bedrooms,
