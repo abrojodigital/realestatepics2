@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   map: {
-    height: 220,
+    height: 320,
   },
   mapText: {
     fontSize: 16,

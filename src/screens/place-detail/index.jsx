@@ -1,4 +1,3 @@
-import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -10,8 +9,9 @@ const PlaceDetail = ({ navigation, route }) => {
   const place = useSelector((state) =>
     state.place.places.find((place) => place.id === placeId)
   );
-  const parseCoords = JSON.parse(place.coords);
 
+  const parseCoords = JSON.parse(place.coords);
+  console.log(parseCoords);
   return (
     <ScrollView style={styles.container}>
       <Image source={{ uri: place.image }} style={styles.image} />
@@ -25,7 +25,7 @@ const PlaceDetail = ({ navigation, route }) => {
         </View>
         <MapPreview
           style={styles.map}
-          location={{ lat: parseCoords.latitude, lng: parseCoords.longitude }}
+          location={{ lat: parseCoords.lat, lng: parseCoords.lng }}
         >
           <Text style={styles.mapText}>Ubicación no disponible</Text>
         </MapPreview>

@@ -72,7 +72,6 @@ export const getPlaces = createAsyncThunk(
 const placeSlice = createSlice({
   name: "place",
   initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(savePlace.pending, (state) => {
@@ -82,7 +81,7 @@ const placeSlice = createSlice({
         state.isLoading = false;
         state.places.push(action.payload);
       })
-      .addCase(savePlace.rejected, (state) => {
+      .addCase(savePlace.rejected, (state, action) => {
         state.isLoading = false;
       })
       .addCase(getPlaces.pending, (state) => {
@@ -92,7 +91,7 @@ const placeSlice = createSlice({
         state.isLoading = false;
         state.places = action.payload;
       })
-      .addCase(getPlaces.rejected, (state) => {
+      .addCase(getPlaces.rejected, (state, action) => {
         state.isLoading = false;
       });
   },
