@@ -6,8 +6,8 @@ class Place {
     this.address = address;
     this.coords = coords;
     this.status = status;
-    this.price = price;
-    this.area = area;
+    this.price = price.toString();
+    this.area = area.toString();
   }
 }
 
