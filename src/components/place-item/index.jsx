@@ -1,11 +1,16 @@
-import { View, TouchableOpacity, Image, Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { styles } from "./styles";
+import convertStringToArray from "../../utils/convert";
 
-const PlaceItem = ({ id, title, image, address, onSelect }) => {
+const PlaceItem = ({ id, title, images, address, onSelect }) => {
+  const listImages = convertStringToArray(images);
+  const firstImage = listImages.length > 0 ? listImages[0] : null;
+
   return (
     <TouchableOpacity style={styles.container} onPress={() => onSelect(id)}>
-      <Image style={styles.image} source={{ uri: image }} />
+      <Image style={styles.image} source={{ uri: firstImage }} />
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.address}>{address}</Text>

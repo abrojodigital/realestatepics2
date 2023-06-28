@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { insertPlace, selectPlaces } from "../db";
+import {
+  deleteAllPlacesFromDatabase,
+  deletePlace,
+  insertPlace,
+  selectPlaces,
+  updatePlace,
+} from "../db";
 import Place from "../model/place";
 import { extractErrorMessage } from "../utils";
 import { URL_GEOCODING } from "../utils/maps";
@@ -19,7 +25,7 @@ export const savePlace = createAsyncThunk(
       );
 
       if (!response.ok) {
-        return thunkAPI.rejectWithValue("Algo malió sal!");
+        return thunkAPI.rejectWithValue("¡Algo salió mal!");
       }
 
       const data = await response.json();
@@ -32,7 +38,7 @@ export const savePlace = createAsyncThunk(
       const address = data.results[0].formatted_address;
       const result = await insertPlace(
         place.title,
-        place.image,
+        place.images,
         address,
         place.coords,
         place.status,
@@ -43,7 +49,7 @@ export const savePlace = createAsyncThunk(
       const newPlace = new Place(
         result.insertId,
         place.title,
-        place.image,
+        place.images,
         address,
         place.coords,
         place.status,
@@ -63,6 +69,52 @@ export const getPlaces = createAsyncThunk(
     try {
       const result = await selectPlaces();
       return result?.rows?._array || [];
+    } catch (error) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
+
+export const deletePlaceById = createAsyncThunk(
+  "place/deletePlaceById",
+  async (placeId, thunkAPI) => {
+    try {
+      await deletePlace(placeId);
+      return placeId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
+
+export const updatePlaceById = createAsyncThunk(
+  "place/updatePlaceById",
+  async (updatedPlace, thunkAPI) => {
+    try {
+      const { placeId, title, images, address, coords, status, price, area } =
+        updatedPlace;
+      await updatePlace(
+        placeId,
+        title,
+        images,
+        address,
+        coords,
+        status,
+        price,
+        area
+      );
+      return updatedPlace;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(extractErrorMessage(error));
+    }
+  }
+);
+
+export const deleteAllPlaces = createAsyncThunk(
+  "place/deleteAllPlaces",
+  async (_, thunkAPI) => {
+    try {
+      await deleteAllPlacesFromDatabase();
     } catch (error) {
       return thunkAPI.rejectWithValue(extractErrorMessage(error));
     }
@@ -92,6 +144,44 @@ const placeSlice = createSlice({
         state.places = action.payload;
       })
       .addCase(getPlaces.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(deletePlaceById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deletePlaceById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.places = state.places.filter(
+          (place) => place.id !== action.payload
+        );
+      })
+      .addCase(deleteAllPlaces.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAllPlaces.fulfilled, (state) => {
+        state.isLoading = false;
+        state.places = [];
+      })
+      .addCase(deleteAllPlaces.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(deletePlaceById.rejected, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(updatePlaceById.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updatePlaceById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const updatedPlace = action.payload;
+        const index = state.places.findIndex(
+          (place) => place.id === updatedPlace.placeId
+        );
+        if (index !== -1) {
+          state.places[index] = updatedPlace;
+        }
+      })
+      .addCase(updatePlaceById.rejected, (state, action) => {
         state.isLoading = false;
       });
   },

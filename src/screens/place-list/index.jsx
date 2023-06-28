@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { styles } from "./styles";
 import { PlaceItem } from "../../components";
-import { getPlaces } from "../../store/place.slice";
+import { deleteAllPlaces, getPlaces } from "../../store/place.slice";
 
 const PlaceList = ({ navigation }) => {
   const dispatch = useDispatch();

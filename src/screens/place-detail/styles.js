@@ -43,4 +43,10 @@ export const styles = StyleSheet.create({
     fontStyle: "italic",
     color: "gray",
   },
+  images: {
+    width: 200,
+    height: 200,
+    marginRight: 10,
+    borderRadius: 5,
+  },
 });

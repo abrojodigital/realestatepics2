@@ -1,23 +1,25 @@
-import { Alert, Button, Image, Text, View } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import {
-  launchCameraAsync,
-  requestCameraPermissionsAsync,
+  MediaTypeOptions,
+  launchImageLibraryAsync,
+  requestMediaLibraryPermissionsAsync,
 } from "expo-image-picker";
-
-import colors from "../../utils/colors";
-import { styles } from "./styles";
 import { useState } from "react";
+import { Alert, Button, Image, ScrollView, Text, View } from "react-native";
 
-export const ImageSelector = ({ onImage }) => {
-  const [pickedUrl, setPickedUrl] = useState(null);
+import { styles } from "./styles";
+import colors from "../../utils/colors";
+
+const ImageSelector = ({ onImage }) => {
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const verifyPermissions = async () => {
-    const { status } = await requestCameraPermissionsAsync();
+    const { status } = await requestMediaLibraryPermissionsAsync();
 
     if (status !== "granted") {
       Alert.alert(
         "Permiso denegado",
-        "Necesitamos permisos para usar la camara",
+        "Necesitamos permisos para acceder a la galería de imágenes",
         [{ text: "Ok" }]
       );
       return false;
@@ -26,33 +28,37 @@ export const ImageSelector = ({ onImage }) => {
     return true;
   };
 
-  const onHandleTakeImage = async () => {
-    const isCameraPermission = await verifyPermissions();
-    if (!isCameraPermission) return;
+  const handlePickImage = async () => {
+    const isPermissionGranted = await verifyPermissions();
+    if (!isPermissionGranted) return;
 
-    const image = await launchCameraAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
+    const result = await launchImageLibraryAsync({
+      mediaTypes: MediaTypeOptions.Images,
+      allowsMultipleSelection: false,
       quality: 0.7,
     });
 
-    setPickedUrl(image.uri);
-    onImage(image.uri);
+    if (!result.cancelled) {
+      const image = result.uri;
+      setSelectedImages((prevImages) => [...prevImages, image]);
+      onImage(image);
+      console.log(selectedImages);
+    }
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.preview}>
-        {!pickedUrl ? (
-          <Text>No hay imagen seleccionada</Text>
-        ) : (
-          <Image style={styles.image} source={{ uri: pickedUrl }} />
-        )}
-      </View>
+      <Text style={styles.label}>Imágenes</Text>
+      <ScrollView horizontal>
+        {selectedImages.map((image, index) => (
+          <Image key={index} source={{ uri: image }} style={styles.images} />
+        ))}
+      </ScrollView>
       <Button
-        title="Tomar Foto"
+        title="Agregar Imagen"
         color={colors.primary}
-        onPress={onHandleTakeImage}
+        onPress={handlePickImage}
+        icon={<MaterialIcons name="add" size={24} color="white" />}
       />
     </View>
   );

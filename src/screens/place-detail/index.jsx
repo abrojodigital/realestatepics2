@@ -1,8 +1,10 @@
+import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
 import { styles } from "./styles";
 import { MapPreview } from "../../components";
+import convertStringToArray from "../../utils/convert";
 
 const PlaceDetail = ({ navigation, route }) => {
   const { placeId } = route.params;
@@ -11,10 +13,17 @@ const PlaceDetail = ({ navigation, route }) => {
   );
 
   const parseCoords = JSON.parse(place.coords);
-  console.log(parseCoords);
+
+  const images = convertStringToArray(place.images);
+
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: place.image }} style={styles.image} />
+      <ScrollView horizontal>
+        {images.map((image, index) => (
+          <Image key={index} source={{ uri: image }} style={styles.images} />
+        ))}
+      </ScrollView>
+
       <View style={styles.location}>
         <View style={styles.addressContainer}>
           <Text style={styles.title}>{place.title}</Text>

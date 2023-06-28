@@ -1,15 +1,14 @@
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Platform, TouchableOpacity } from "react-native";
+
 import {
   MapsScreen,
   NewPlaceScreen,
   PlaceDetailScreen,
   PlaceListScreen,
 } from "../screens/index";
-import { Platform, TouchableOpacity } from "react-native";
-
-import Ionicons from "@expo/vector-icons/Ionicons";
-import React from "react";
 import colors from "../utils/colors";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
