@@ -15,56 +15,64 @@ const initialState = {
 export const signUp = createAsyncThunk(
   "auth/signUp",
   async ({ email, password }) => {
-    const response = await fetch(FIREBASE_AUTH_SIGN_UP_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-        returnSecureToken: true,
-      }),
-    });
+    try {
+      const response = await fetch(FIREBASE_AUTH_SIGN_UP_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          returnSecureToken: true,
+        }),
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+
+      return {
+        token: data.idToken,
+        userId: data.localId,
+      };
+    } catch (error) {
       throw new Error("Something went wrong!");
     }
-
-    const data = await response.json();
-
-    return {
-      token: data.idToken,
-      userId: data.localId,
-    };
   }
 );
 
 export const signIn = createAsyncThunk(
   "auth/signIn",
   async ({ email, password }) => {
-    const response = await fetch(FIREBASE_AUTH_SIGN_IN_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-        returnSecureToken: true,
-      }),
-    });
+    try {
+      const response = await fetch(FIREBASE_AUTH_SIGN_IN_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          returnSecureToken: true,
+        }),
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+
+      return {
+        token: data.idToken,
+        userId: data.localId,
+      };
+    } catch (error) {
       throw new Error("Something went wrong!");
     }
-
-    const data = await response.json();
-
-    return {
-      token: data.idToken,
-      userId: data.localId,
-    };
   }
 );
 
