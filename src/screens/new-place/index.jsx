@@ -49,7 +49,6 @@ const NewPlace = ({ navigation }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Descripción nuevo inmueble</Text>
         <Input
           placeholder="Casa 2 dormitorios 90 m2, Esquel"
           placeholderTextColor={colors.gray}
@@ -59,17 +58,23 @@ const NewPlace = ({ navigation }) => {
           value={title}
           label="Descripción"
         />
-        <Picker
-          selectedValue={status}
-          style={{ height: 50, width: "100%", alignContent: "left" }}
-          onValueChange={(value) => onHandlerChangeText(value, "status")}
-        >
-          <Picker.Item label="Seleccione un estado" value="" />
-          <Picker.Item label="En Alquiler" value="En Alquiler" />
-          <Picker.Item label="En Venta" value="En Venta" />
-          <Picker.Item label="Alquilado" value="Alquilado" />
-          <Picker.Item label="Vendido" value="Vendido" />
-        </Picker>
+        <View style={styles.contentPicker}>
+          <Text style={styles.text}>Estado de la propiedad</Text>
+          <Picker
+            selectedValue={status}
+            style={{
+              height: 50,
+            }}
+            onValueChange={(value) => onHandlerChangeText(value, "status")}
+          >
+            <Picker.Item label="Seleccione un estado" value="" />
+            <Picker.Item label="En Alquiler" value="En Alquiler" />
+            <Picker.Item label="En Venta" value="En Venta" />
+            <Picker.Item label="Alquilado" value="Alquilado" />
+            <Picker.Item label="Vendido" value="Vendido" />
+          </Picker>
+        </View>
+
         <Input
           placeholder="Precio"
           keyboardType="numeric"

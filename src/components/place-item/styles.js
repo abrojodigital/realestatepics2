@@ -23,12 +23,27 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     color: colors.text,
+    fontWeight: "bold",
   },
   address: {
     fontSize: 14,
     color: colors.text,
-    fontWeight: "bold",
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end", // Alineación a la derecha
+    marginTop: 10,
+  },
+  button: {
+    backgroundColor: colors.primary,
+    borderRadius: 20,
+    padding: 10,
+    marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    width: 40,
+    height: 40,
   },
 });

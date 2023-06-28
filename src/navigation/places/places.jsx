@@ -7,8 +7,8 @@ import {
   NewPlaceScreen,
   PlaceDetailScreen,
   PlaceListScreen,
-} from "../screens/index";
-import colors from "../utils/colors";
+} from "../../screens/index";
+import colors from "../../utils/colors";
 
 const Stack = createNativeStackNavigator();
 

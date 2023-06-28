@@ -10,14 +10,17 @@ export const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
   },
+  contentPicker: {
+    borderBottom: 1,
+  },
   title: {
     fontSize: 16,
     paddingBottom: 15,
+    fontWeight: "bold",
   },
-  input: {
+  text: {
     borderBottomColor: colors.primary,
-    borderBottomWidth: 1,
-    marginBottom: 15,
+    paddingTop: 10,
     padding: 5,
   },
 });
