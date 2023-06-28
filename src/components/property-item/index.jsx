@@ -1,13 +1,12 @@
-import React from "react";
 import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
-import { deletePlaceById } from "../../store/place.slice";
+import { deletePropertyById } from "../../store/property.slice";
 import convertStringToArray from "../../utils/convert";
 
-const PlaceItem = ({ id, title, images, address, onSelect }) => {
+const PropertyItem = ({ id, title, images, address, onSelect }) => {
   const dispatch = useDispatch();
   const listImages = convertStringToArray(images);
   const firstImage = listImages.length > 0 ? listImages[0] : null;
@@ -20,19 +19,19 @@ const PlaceItem = ({ id, title, images, address, onSelect }) => {
   };
 
   const handleDelete = () => {
-    dispatch(deletePlaceById(id))
+    dispatch(deletePropertyById(id))
       .unwrap()
       .then(() => {
-        console.log("Place deleted successfully");
+        console.log("Property deleted successfully");
       })
       .catch((error) => {
-        console.log("Error deleting place:", error);
+        console.log("Error deleting property:", error);
       });
   };
 
   // const handleEdit = () => {
   //   // Implement your edit logic here
-  //   console.log("Editing place with ID:", id);
+  //   console.log("Editing property with ID:", id);
   // };
 
   return (
@@ -54,4 +53,4 @@ const PlaceItem = ({ id, title, images, address, onSelect }) => {
   );
 };
 
-export default PlaceItem;
+export default PropertyItem;

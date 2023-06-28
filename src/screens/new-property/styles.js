@@ -11,7 +11,14 @@ export const styles = StyleSheet.create({
     margin: 20,
   },
   contentPicker: {
-    borderBottom: 1,
+    flex: 1,
+    marginTop: 10,
+    height: 100,
+    width: "100%",
+    backgroundColor: colors.white,
+    borderColor: colors.primary,
+    borderWidth: 1,
+    marginBottom: 20,
   },
   title: {
     fontSize: 16,
@@ -22,5 +29,6 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.primary,
     paddingTop: 10,
     padding: 5,
+    fontWeight: "bold",
   },
 });

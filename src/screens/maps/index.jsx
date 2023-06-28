@@ -26,7 +26,7 @@ const Maps = ({ navigation, route }) => {
 
   const onHandlerSaveLocation = () => {
     if (selectedLocation)
-      navigation.navigate("NewPlace", { mapLocation: selectedLocation });
+      navigation.navigate("NewProperty", { mapLocation: selectedLocation });
   };
 
   useLayoutEffect(() => {

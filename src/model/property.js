@@ -1,4 +1,4 @@
-class Place {
+class Property {
   constructor(id, title, images, address, coords, status, price, area) {
     this.id = id.toString();
     this.title = title;
@@ -11,4 +11,4 @@ class Place {
   }
 }
 
-export default Place;
+export default Property;

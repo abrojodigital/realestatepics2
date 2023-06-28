@@ -51,4 +51,18 @@ export const styles = StyleSheet.create({
   submitContainer: {
     paddingVertical: 5,
   },
+  contentLogo: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "80%",
+    padding: 15,
+    margin: 15,
+    backgroundColor: colors.white,
+  },
+
+  logoTitle: {
+    fontSize: 24,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
 });

@@ -1,5 +1,5 @@
-import React, { useReducer } from "react";
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import { useReducer, useState } from "react";
+import { Button, Image, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
@@ -39,12 +39,12 @@ const formReducer = (state, action) => {
 const Auth = () => {
   const dispatch = useDispatch();
   const [formState, dispatchFormState] = useReducer(formReducer, initialState);
-  const [isLogin, setIsLogin] = React.useState(true);
-  const title = isLogin ? "Login" : "Register";
-  const buttonTitle = isLogin ? "Login" : "Register";
+  const [isLogin, setIsLogin] = useState(true);
+  const title = isLogin ? "Login" : "Registrarme";
+  const buttonTitle = isLogin ? "Login" : "Registrarme";
   const messageText = isLogin
-    ? "Don't have an account?"
-    : "Already have an account?";
+    ? "No tienes una cuenta?"
+    : "Ya tienes una cuenta?";
 
   const onHandleChangeAuth = () => {
     setIsLogin(!isLogin);
@@ -70,6 +70,14 @@ const Auth = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.contentLogo}>
+        <Image
+          style={styles.logo}
+          source={require("../../imgs/real-estate.png")}
+        />
+        <Text style={styles.logoTitle}>Abrojo Estate</Text>
+      </View>
+
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
         <Input

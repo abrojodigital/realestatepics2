@@ -3,28 +3,28 @@ import { FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { styles } from "./styles";
-import { PlaceItem } from "../../components";
-import { deleteAllPlaces, getPlaces } from "../../store/place.slice";
+import { PropertyItem } from "../../components";
+import { getProperties } from "../../store/property.slice";
 
-const PlaceList = ({ navigation }) => {
+const PropertyList = ({ navigation }) => {
   const dispatch = useDispatch();
-  const places = useSelector((state) => state.place.places);
+  const properties = useSelector((state) => state.property.properties);
 
   useEffect(() => {
-    dispatch(getPlaces());
+    dispatch(getProperties());
   }, [dispatch]);
 
   const onHandlerSelect = (id) => {
-    navigation.navigate("PlaceDetail", { placeId: id });
+    navigation.navigate("PropertyDetail", { propertyId: id });
   };
 
   const renderItem = ({ item }) => (
-    <PlaceItem {...item} onSelect={onHandlerSelect} />
+    <PropertyItem {...item} onSelect={onHandlerSelect} />
   );
 
   return (
     <FlatList
-      data={places}
+      data={properties}
       style={styles.container}
       renderItem={renderItem}
       keyExtractor={(item) => item.id.toString()}
@@ -32,4 +32,4 @@ const PlaceList = ({ navigation }) => {
   );
 };
 
-export default PlaceList;
+export default PropertyList;

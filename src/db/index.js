@@ -6,7 +6,7 @@ export const init = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "CREATE TABLE IF NOT EXISTS places (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, images TEXT NOT NULL, address TEXT NOT NULL, coords TEXT NOT NULL, status TEXT NOT NULL, price FLOAT NOT NULL, area INTEGER NOT NULL)",
+        "CREATE TABLE IF NOT EXISTS properties (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, images TEXT NOT NULL, address TEXT NOT NULL, coords TEXT NOT NULL, status TEXT NOT NULL, price FLOAT NOT NULL, area INTEGER NOT NULL)",
         [],
         () => {
           resolve();
@@ -21,7 +21,7 @@ export const init = () => {
   return promise;
 };
 
-export const insertPlace = (
+export const insertProperty = (
   title,
   images,
   address,
@@ -33,7 +33,7 @@ export const insertPlace = (
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "INSERT INTO places (title, images, address, coords, status, price, area) VALUES (?,?,?,?,?,?,?)",
+        "INSERT INTO properties (title, images, address, coords, status, price, area) VALUES (?,?,?,?,?,?,?)",
         [
           title,
           JSON.stringify(images),
@@ -56,11 +56,11 @@ export const insertPlace = (
   return promise;
 };
 
-export const selectPlaces = () => {
+export const selectProperties = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "SELECT * FROM places",
+        "SELECT * FROM properties",
         [],
         (_, result) => {
           resolve(result);
@@ -74,12 +74,12 @@ export const selectPlaces = () => {
 
   return promise;
 };
-export const deletePlace = (placeId) => {
+export const deleteProperty = (propertyId) => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "DELETE FROM places WHERE id = ?",
-        [placeId],
+        "DELETE FROM properties WHERE id = ?",
+        [propertyId],
         (_, result) => {
           resolve(result);
         },
@@ -93,8 +93,8 @@ export const deletePlace = (placeId) => {
   return promise;
 };
 
-export const updatePlace = (
-  placeId,
+export const updateProperty = (
+  propertyId,
   title,
   images,
   address,
@@ -106,7 +106,7 @@ export const updatePlace = (
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "UPDATE places SET title = ?, images = ?, address = ?, coords = ?, status = ?, price = ?, area = ? WHERE id = ?",
+        "UPDATE properties SET title = ?, images = ?, address = ?, coords = ?, status = ?, price = ?, area = ? WHERE id = ?",
         [
           title,
           JSON.stringify(images),
@@ -115,7 +115,7 @@ export const updatePlace = (
           status,
           price,
           area,
-          placeId,
+          propertyId,
         ],
         (_, result) => {
           resolve(result);
@@ -130,11 +130,11 @@ export const updatePlace = (
   return promise;
 };
 
-export const deleteAllPlacesFromDatabase = () => {
+export const deleteAllPropertiesFromDatabase = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "DELETE FROM places",
+        "DELETE FROM properties",
         [],
         (_, result) => {
           resolve(result);

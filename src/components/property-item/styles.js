@@ -11,9 +11,9 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   image: {
-    width: 70,
-    height: 70,
-    borderRadius: 20,
+    width: 100,
+    height: 150,
+    borderRadius: 10,
     backgroundColor: colors.primary,
   },
   info: {

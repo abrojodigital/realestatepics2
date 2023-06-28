@@ -1,14 +1,14 @@
 import { Picker } from "@react-native-picker/picker";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, ScrollView, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
 import { ImageSelector, Input, LocationSelector } from "../../components";
-import { savePlace } from "../../store/place.slice";
+import { saveProperty } from "../../store/property.slice";
 import colors from "../../utils/colors";
 
-const NewPlace = ({ navigation }) => {
+const NewProperty = ({ navigation }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     title: "",
@@ -26,8 +26,8 @@ const NewPlace = ({ navigation }) => {
   };
 
   const onHandlerSubmit = () => {
-    dispatch(savePlace(formData)).unwrap();
-    navigation.navigate("Places");
+    dispatch(saveProperty(formData));
+    navigation.navigate("Properties");
   };
 
   const onImage = (imageUri) => {
@@ -62,9 +62,7 @@ const NewPlace = ({ navigation }) => {
           <Text style={styles.text}>Estado de la propiedad</Text>
           <Picker
             selectedValue={status}
-            style={{
-              height: 50,
-            }}
+            style={{ height: 50, width: "100%" }}
             onValueChange={(value) => onHandlerChangeText(value, "status")}
           >
             <Picker.Item label="Seleccione un estado" value="" />
@@ -95,7 +93,7 @@ const NewPlace = ({ navigation }) => {
           autoCorrect={false}
           onChangeText={(value) => onHandlerChangeText(value, "area")}
           value={area.toString()}
-          label="Area"
+          label="Área"
         />
         <ImageSelector onImage={onImage} />
         <LocationSelector onLocation={onLocation} />
@@ -110,4 +108,4 @@ const NewPlace = ({ navigation }) => {
   );
 };
 
-export default NewPlace;
+export default NewProperty;

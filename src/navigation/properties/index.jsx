@@ -4,18 +4,18 @@ import { Platform, TouchableOpacity } from "react-native";
 
 import {
   MapsScreen,
-  NewPlaceScreen,
-  PlaceDetailScreen,
-  PlaceListScreen,
+  NewPropertyScreen,
+  PropertyDetailScreen,
+  PropertyListScreen,
 } from "../../screens/index";
 import colors from "../../utils/colors";
 
 const Stack = createNativeStackNavigator();
 
-const PlacesNavigator = () => {
+const PropertiesNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Place"
+      initialRouteName="Property"
       screenOptions={{
         headerStyle: {
           backgroundColor:
@@ -28,12 +28,14 @@ const PlacesNavigator = () => {
       }}
     >
       <Stack.Screen
-        name="Places"
-        component={PlaceListScreen}
+        name="Properties"
+        component={PropertyListScreen}
         options={({ navigation }) => ({
           title: "Inmuebles",
           headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate("NewPlace")}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("NewProperty")}
+            >
               <Ionicons
                 name="add-circle-outline"
                 size={25}
@@ -44,13 +46,13 @@ const PlacesNavigator = () => {
         })}
       />
       <Stack.Screen
-        name="PlaceDetail"
-        component={PlaceDetailScreen}
+        name="PropertyDetail"
+        component={PropertyDetailScreen}
         options={{ title: "Detalles del inmueble" }}
       />
       <Stack.Screen
-        name="NewPlace"
-        component={NewPlaceScreen}
+        name="NewProperty"
+        component={NewPropertyScreen}
         options={{ title: "Nuevo inmueble" }}
       />
       <Stack.Screen
@@ -62,4 +64,4 @@ const PlacesNavigator = () => {
   );
 };
 
-export default PlacesNavigator;
+export default PropertiesNavigator;

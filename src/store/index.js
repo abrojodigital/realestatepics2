@@ -1,11 +1,11 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 import authReducer from "./auth.slice";
-import placeReducer from "./place.slice";
+import placeReducer from "./property.slice";
 
 export const store = configureStore({
   reducer: {
-    place: placeReducer,
+    property: placeReducer,
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
