@@ -1,9 +1,9 @@
 import { useReducer, useState } from "react";
-import { Button, Image, Text, TouchableOpacity, View } from "react-native";
+import { Button, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
-import { Input } from "../../components";
+import { Input, Logo } from "../../components";
 import { signIn, signUp } from "../../store/auth/auth.slice";
 import colors from "../../utils/colors";
 import { UPDATE_FORM, onInputChange } from "../../utils/onInputChange";
@@ -70,13 +70,7 @@ const Auth = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.contentLogo}>
-        <Image
-          style={styles.logo}
-          source={require("../../imgs/real-estate.png")}
-        />
-        <Text style={styles.logoTitle}>Abrojo Estate</Text>
-      </View>
+      <Logo />
 
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
