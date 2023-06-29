@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
 import { Input } from "../../components";
-import { signIn, signUp } from "../../store/auth.slice";
+import { signIn, signUp } from "../../store/auth/auth.slice";
 import colors from "../../utils/colors";
 import { UPDATE_FORM, onInputChange } from "../../utils/onInputChange";
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { styles } from "./styles";
 import { PropertyItem } from "../../components";
-import { getProperties } from "../../store/property.slice";
+import { getProperties } from "../../store/property/propertySlice";
 
 const PropertyList = ({ navigation }) => {
   const dispatch = useDispatch();

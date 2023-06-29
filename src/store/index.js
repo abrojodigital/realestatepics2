@@ -1,15 +1,13 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
-import authReducer from "./auth.slice";
-import placeReducer from "./property.slice";
+import authReducer from "./auth/auth.slice";
+import propertyReducer from "./property/propertySlice";
 
 export const store = configureStore({
   reducer: {
-    property: placeReducer,
+    property: propertyReducer,
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+    getDefaultMiddleware({ serializableCheck: false }),
 });

@@ -42,7 +42,8 @@ const ImageSelector = ({ onImage }) => {
       const image = result.uri;
       setSelectedImages((prevImages) => [...prevImages, image]);
       onImage(image);
-      console.log(selectedImages);
+    } else {
+      console.log("Cancel");
     }
   };
 

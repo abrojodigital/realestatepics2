@@ -1,11 +1,11 @@
 import { Picker } from "@react-native-picker/picker";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, ScrollView, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
 import { ImageSelector, Input, LocationSelector } from "../../components";
-import { saveProperty } from "../../store/property.slice";
+import { saveProperty } from "../../store/property/propertySlice";
 import colors from "../../utils/colors";
 
 const NewProperty = ({ navigation }) => {

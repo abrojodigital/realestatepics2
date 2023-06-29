@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   FIREBASE_AUTH_SIGN_IN_URL,
   FIREBASE_AUTH_SIGN_UP_URL,
-} from "../constants/firebase";
+} from "../../constants/firebase";
 
 const initialState = {
   token: null,

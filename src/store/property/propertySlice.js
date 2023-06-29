@@ -6,15 +6,10 @@ import {
   insertProperty,
   selectProperties,
   updateProperty,
-} from "../db";
-import Property from "../model/property";
-import { extractErrorMessage } from "../utils";
-import { URL_GEOCODING } from "../utils/maps";
-
-const initialState = {
-  properties: [],
-  isLoading: false,
-};
+} from "../../db";
+import Property from "../../model/property";
+import { extractErrorMessage } from "../../utils";
+import { URL_GEOCODING } from "../../utils/maps";
 
 export const saveProperty = createAsyncThunk(
   "property/saveProperty",
@@ -129,9 +124,15 @@ export const deleteAllProperties = createAsyncThunk(
   }
 );
 
+const initialState = {
+  properties: [],
+  isLoading: false,
+};
+
 const propertySlice = createSlice({
   name: "property",
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(saveProperty.pending, (state) => {

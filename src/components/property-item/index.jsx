@@ -3,7 +3,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
-import { deletePropertyById } from "../../store/property.slice";
+import { deletePropertyById } from "../../store/property/propertySlice";
 import convertStringToArray from "../../utils/convert";
 
 const PropertyItem = ({ id, title, images, address, onSelect }) => {
