@@ -1,4 +1,3 @@
-import { MaterialIcons } from "@expo/vector-icons";
 import {
   MediaTypeOptions,
   launchImageLibraryAsync,
@@ -59,7 +58,6 @@ const ImageSelector = ({ onImage }) => {
         title="Agregar Imagen"
         color={colors.primary}
         onPress={handlePickImage}
-        icon={<MaterialIcons name="add" size={24} color="white" />}
       />
     </View>
   );

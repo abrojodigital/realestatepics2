@@ -8,8 +8,10 @@ import convertStringToArray from "../../utils/convert";
 
 const PropertyItem = ({ id, title, images, address, onSelect }) => {
   const dispatch = useDispatch();
-  const listImages = convertStringToArray(images);
-  const firstImage = listImages.length > 0 ? listImages[0] : null;
+  const firstImage =
+    convertStringToArray(images).length > 0
+      ? convertStringToArray(images)[0]
+      : null;
 
   const confirmDelete = () => {
     Alert.alert("Confirma Borrar?", "Está seguro de borrar este registro?", [
@@ -29,11 +31,6 @@ const PropertyItem = ({ id, title, images, address, onSelect }) => {
       });
   };
 
-  // const handleEdit = () => {
-  //   // Implement your edit logic here
-  //   console.log("Editing property with ID:", id);
-  // };
-
   return (
     <TouchableOpacity style={styles.container} onPress={() => onSelect(id)}>
       <Image style={styles.image} source={{ uri: firstImage }} />
@@ -41,9 +38,6 @@ const PropertyItem = ({ id, title, images, address, onSelect }) => {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.address}>{address}</Text>
         <View style={styles.buttonsContainer}>
-          {/* <TouchableOpacity style={styles.button} onPress={handleEdit}>
-            <Icon name="edit" size={20} color="white" />
-          </TouchableOpacity> */}
           <TouchableOpacity style={styles.button} onPress={confirmDelete}>
             <Icon name="trash" size={20} color="white" />
           </TouchableOpacity>
