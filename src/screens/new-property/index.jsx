@@ -1,5 +1,5 @@
 import { Picker } from "@react-native-picker/picker";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, ScrollView, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -12,7 +12,7 @@ const NewProperty = ({ navigation }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     title: "",
-    images: [],
+    images: "",
     coords: null,
     status: "",
     price: 0,
@@ -26,6 +26,8 @@ const NewProperty = ({ navigation }) => {
   };
 
   const onHandlerSubmit = () => {
+    formData.images = JSON.stringify(images);
+    console.log(formData.images);
     dispatch(saveProperty(formData));
     navigation.navigate("Properties");
   };
@@ -99,7 +101,7 @@ const NewProperty = ({ navigation }) => {
         <LocationSelector onLocation={onLocation} />
         <Button
           disabled={!enableButton}
-          title="Grabar ubicación"
+          title="Grabar propiedad"
           color={colors.primary}
           onPress={onHandlerSubmit}
         />
