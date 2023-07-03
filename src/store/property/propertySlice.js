@@ -11,6 +11,10 @@ import Property from "../../model/property";
 import { extractErrorMessage } from "../../utils";
 import { URL_GEOCODING } from "../../utils/maps";
 
+const initialState = {
+  properties: [],
+  isLoading: false,
+};
 export const saveProperty = createAsyncThunk(
   "property/saveProperty",
   async (property, thunkAPI) => {
@@ -123,11 +127,6 @@ export const deleteAllProperties = createAsyncThunk(
     }
   }
 );
-
-const initialState = {
-  properties: [],
-  isLoading: false,
-};
 
 const propertySlice = createSlice({
   name: "property",
