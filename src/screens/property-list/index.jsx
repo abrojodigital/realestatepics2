@@ -12,15 +12,18 @@ const PropertyList = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(getProperties());
-    console.log(properties);
   }, [properties]);
+
+  const onHandlerEdit = (id) => {
+    navigation.navigate("EditProperty", { propertyId: id });
+  };
 
   const onHandlerSelect = (id) => {
     navigation.navigate("PropertyDetail", { propertyId: id });
   };
 
   const renderItem = ({ item }) => (
-    <PropertyItem {...item} onSelect={onHandlerSelect} />
+    <PropertyItem {...item} onSelect={onHandlerSelect} onEdit={onHandlerEdit} />
   );
 
   return (
@@ -28,7 +31,7 @@ const PropertyList = ({ navigation }) => {
       data={properties}
       style={styles.container}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => (!item.id ? item.id : 1)}
     />
   );
 };

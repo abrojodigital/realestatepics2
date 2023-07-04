@@ -27,13 +27,23 @@ export const styles = StyleSheet.create({
     color: colors.text,
     fontWeight: "bold",
   },
+  status: {
+    fontSize: 18,
+    color: colors.secondary,
+    fontWeight: "bold",
+  },
+  price: {
+    fontSize: 16,
+    color: colors.secondary,
+    fontWeight: "bold",
+  },
   address: {
     fontSize: 14,
     color: colors.text,
   },
   buttonsContainer: {
     flexDirection: "row",
-    justifyContent: "flex-end", // Alineación a la derecha
+    justifyContent: "flex-end",
     marginTop: 10,
   },
   button: {

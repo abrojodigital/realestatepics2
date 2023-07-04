@@ -6,6 +6,7 @@ import {
   MapsScreen,
   NewPropertyScreen,
   PropertyDetailScreen,
+  PropertyEditScreen,
   PropertyListScreen,
 } from "../../screens/index";
 import colors from "../../utils/colors";
@@ -54,6 +55,11 @@ const PropertiesNavigator = () => {
         name="NewProperty"
         component={NewPropertyScreen}
         options={{ title: "Nuevo inmueble" }}
+      />
+      <Stack.Screen
+        name="EditProperty"
+        component={PropertyEditScreen}
+        options={{ title: "Editar inmueble" }}
       />
       <Stack.Screen
         name="Maps"

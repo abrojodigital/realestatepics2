@@ -107,16 +107,7 @@ export const updateProperty = (
     db.transaction((tx) => {
       tx.executeSql(
         "UPDATE properties SET title = ?, images = ?, address = ?, coords = ?, status = ?, price = ?, area = ? WHERE id = ?",
-        [
-          title,
-          JSON.stringify(images),
-          address,
-          JSON.stringify(coords),
-          status,
-          price,
-          area,
-          propertyId,
-        ],
+        [title, images, address, coords, status, price, area, propertyId],
         (_, result) => {
           resolve(result);
         },

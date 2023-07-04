@@ -6,7 +6,16 @@ import { styles } from "./styles";
 import { deletePropertyById } from "../../store/property/propertySlice";
 import { convertJSONToArray } from "../../utils/convert";
 
-const PropertyItem = ({ id, title, images, address, onSelect }) => {
+const PropertyItem = ({
+  id,
+  title,
+  images,
+  address,
+  status,
+  price,
+  onSelect,
+  onEdit,
+}) => {
   const dispatch = useDispatch();
 
   const arrImages = convertJSONToArray(JSON.parse(images));
@@ -36,9 +45,15 @@ const PropertyItem = ({ id, title, images, address, onSelect }) => {
       <View style={styles.info}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.address}>{address}</Text>
+        <Text style={styles.status}>{status}</Text>
+        <Text style={styles.price}>u$s {price}</Text>
+
         <View style={styles.buttonsContainer}>
           <TouchableOpacity style={styles.button} onPress={confirmDelete}>
             <Icon name="trash" size={20} color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => onEdit(id)}>
+            <Icon name="edit" size={20} color="white" />
           </TouchableOpacity>
         </View>
       </View>
