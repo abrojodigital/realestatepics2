@@ -12,7 +12,8 @@ const PropertyList = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(getProperties());
-  }, [dispatch]);
+    console.log(properties);
+  }, [properties]);
 
   const onHandlerSelect = (id) => {
     navigation.navigate("PropertyDetail", { propertyId: id });

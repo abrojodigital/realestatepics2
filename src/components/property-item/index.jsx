@@ -4,14 +4,13 @@ import { useDispatch } from "react-redux";
 
 import { styles } from "./styles";
 import { deletePropertyById } from "../../store/property/propertySlice";
-import convertStringToArray from "../../utils/convert";
+import { convertJSONToArray } from "../../utils/convert";
 
 const PropertyItem = ({ id, title, images, address, onSelect }) => {
   const dispatch = useDispatch();
-  const firstImage =
-    convertStringToArray(images).length > 0
-      ? convertStringToArray(images)[0]
-      : null;
+
+  const arrImages = convertJSONToArray(JSON.parse(images));
+  const firstImage = arrImages.length > 0 ? arrImages[0] : null;
 
   const confirmDelete = () => {
     Alert.alert("Confirma Borrar?", "Está seguro de borrar este registro?", [

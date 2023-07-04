@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import { styles } from "./styles";
 import { MapPreview } from "../../components";
-import convertStringToArray from "../../utils/convert";
+import { convertJSONToArray } from "../../utils/convert";
 
 const PropertyDetail = ({ navigation, route }) => {
   const { propertyId } = route.params;
@@ -12,8 +12,7 @@ const PropertyDetail = ({ navigation, route }) => {
   );
 
   const parseCoords = JSON.parse(property.coords);
-
-  const images = convertStringToArray(property.images);
+  const images = convertJSONToArray(JSON.parse(property.images));
 
   return (
     <ScrollView style={styles.container}>

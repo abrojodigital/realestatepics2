@@ -1,5 +1,5 @@
 import { Picker } from "@react-native-picker/picker";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, ScrollView, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 
@@ -27,7 +27,6 @@ const NewProperty = ({ navigation }) => {
 
   const onHandlerSubmit = () => {
     formData.images = JSON.stringify(images);
-    console.log(formData.images);
     dispatch(saveProperty(formData));
     navigation.navigate("Properties");
   };

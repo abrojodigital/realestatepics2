@@ -1,16 +1,12 @@
-const convertStringToArray = (str) => {
+export const convertJSONToArray = (jsonString) => {
   try {
-    const arr = JSON.parse(str);
-    if (Array.isArray(arr)) {
-      return arr;
+    const jsonArray = JSON.parse(jsonString);
+    if (Array.isArray(jsonArray)) {
+      return jsonArray;
     } else {
-      console.log("El string no representa un array.");
       return [];
     }
   } catch (error) {
-    console.log("Error al convertir el string en un array:", error);
     return [];
   }
 };
-
-export default convertStringToArray;
